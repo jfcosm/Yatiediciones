@@ -1,0 +1,120 @@
+---
+---
+<header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-5 bg-transparent border-b border-transparent">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center space-x-3 group">
+        <img 
+          src="/images/logo_yatiediciones.png" 
+          alt="Yatiediciones Logo" 
+          class="h-12 w-12 object-contain rounded-full border-2 border-terracota group-hover:scale-105 transition-transform duration-300"
+        />
+        <div class="flex flex-col">
+          <span class="font-display text-xl font-bold tracking-wide text-azul group-hover:text-terracota transition-colors">Yatiediciones</span>
+          <span class="text-[10px] uppercase tracking-widest text-ocre font-bold -mt-1">Editorial</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#" class="text-azul font-semibold hover:text-terracota transition-colors py-2">Inicio</a>
+        <a href="#about" class="text-azul font-semibold hover:text-terracota transition-colors py-2">Sobre Nosotros</a>
+        <a href="#catalog" class="text-azul font-semibold hover:text-terracota transition-colors py-2">Catálogo</a>
+        <a href="#accessories" class="text-azul font-semibold hover:text-terracota transition-colors py-2">Accesorios</a>
+        <a href="#services" class="text-azul font-semibold hover:text-terracota transition-colors py-2">Talleres</a>
+        <a href="#contact" class="px-5 py-2.5 bg-terracota text-white font-bold rounded-full hover:bg-ocre hover:scale-105 transition-all shadow-md shadow-terracota/20 hover:shadow-ocre/20">Contacto</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button 
+          id="mobile-menu-btn" 
+          type="button" 
+          class="inline-flex items-center justify-center p-2 rounded-lg text-azul hover:text-terracota hover:bg-azul/5 focus:outline-none transition-colors"
+          aria-controls="mobile-menu" 
+          aria-expanded="false"
+        >
+          <span class="sr-only">Abrir menú principal</span>
+          <!-- Menu Hamburger Icon -->
+          <svg class="h-6 w-6" id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <!-- Menu Close Icon -->
+          <svg class="h-6 w-6 hidden" id="close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-hueso/95 backdrop-blur-lg border-b border-azul/10 shadow-lg transition-all duration-300">
+    <div class="px-4 pt-2 pb-6 space-y-3 sm:px-3 text-center flex flex-col">
+      <a href="#" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">Inicio</a>
+      <a href="#about" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">Sobre Nosotros</a>
+      <a href="#catalog" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">Catálogo</a>
+      <a href="#accessories" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">Accesorios</a>
+      <a href="#services" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">Talleres</a>
+      <div class="pt-4">
+        <a href="#contact" class="mobile-link inline-block px-8 py-3 bg-terracota text-white font-bold rounded-full hover:bg-ocre transition-all shadow-md shadow-terracota/20">Contacto</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('main-header');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  // Sticky Header logic on scroll
+  const handleScroll = () => {
+    if (window.scrollY > 20) {
+      header?.classList.add('bg-hueso/90', 'backdrop-blur-md', 'shadow-md', 'py-2', 'border-azul/10');
+      header?.classList.remove('bg-transparent', 'py-5', 'border-transparent');
+    } else {
+      header?.classList.add('bg-transparent', 'py-5', 'border-transparent');
+      header?.classList.remove('bg-hueso/90', 'backdrop-blur-md', 'shadow-md', 'py-2', 'border-azul/10');
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  // Initial run in case the page is loaded scrolled
+  handleScroll();
+
+  // Mobile Menu drawer toggling
+  const toggleMenu = () => {
+    const isExpanded = mobileMenu?.classList.contains('hidden');
+    
+    if (isExpanded) {
+      mobileMenu?.classList.remove('hidden');
+      hamburgerIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      mobileMenuBtn?.setAttribute('aria-expanded', 'true');
+    } else {
+      mobileMenu?.classList.add('hidden');
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+    }
+  };
+
+  mobileMenuBtn?.addEventListener('click', toggleMenu);
+
+  // Close menu when clicking on any link
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

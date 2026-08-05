@@ -1,0 +1,106 @@
+---
+const accessoriesList = [
+  {
+    name: "Marcapáginas con Identidad",
+    desc: "Hechos con texturas andinas y telares artesanales de lana.",
+    icon: "🔖"
+  },
+  {
+    name: "Agendas y Diarios",
+    desc: "Hojas ecológicas y cubiertas ilustradas para registrar historias propias.",
+    icon: "📔"
+  },
+  {
+    name: "Stickers y Pegatinas",
+    desc: "Ilustraciones de llamas, huemules, copihues y flora típica chilena.",
+    icon: "✨"
+  },
+  {
+    name: "Chapitas Ilustradas",
+    desc: "Prendedores con frases de fomento lector y personajes de los libros.",
+    icon: "badge" // we will render an icon or custom circle
+  },
+  {
+    name: "Cuadernos de Dibujo",
+    desc: "Papel grueso ideal para lápices de colores y acuarelas.",
+    icon: "🎨"
+  }
+];
+---
+<section id="accessories" class="py-24 bg-white relative overflow-hidden">
+  
+  <!-- Subtle decor grids -->
+  <div class="absolute top-1/2 left-0 w-24 h-48 bg-ocre/10 rounded-r-full blur-xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Content and Lists (Left on Desktop) -->
+      <div class="lg:col-span-6 space-y-8 order-2 lg:order-1">
+        
+        <div class="space-y-4">
+          <span class="text-sm font-bold uppercase tracking-widest text-ocre bg-ocre/10 px-4 py-1.5 rounded-full inline-block">Colección Complementaria</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-azul leading-tight">
+            El Universo Yatiediciones: Accesorios Literarios
+          </h2>
+          <p class="text-base sm:text-lg text-azul/70 font-medium">
+            Creamos complementos que acompañan las lecturas cotidianas. Cada accesorio lleva impreso la identidad del proyecto: calidez, naturaleza y textiles locales.
+          </p>
+        </div>
+
+        <!-- Interactive Lists -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {accessoriesList.map((item) => (
+            <div class="p-5 rounded-2xl bg-hueso border border-azul/5 hover:border-ocre hover:bg-white hover:shadow-md transition-all duration-300 group">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-ocre/10 text-ocre text-lg group-hover:scale-110 transition-transform">
+                  {item.icon === "badge" ? "⭐" : item.icon}
+                </span>
+                <h4 class="font-bold text-azul text-base group-hover:text-ocre transition-colors">{item.name}</h4>
+              </div>
+              <p class="text-sm text-azul/70 font-medium leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div class="pt-2">
+          <a 
+            href="#contact" 
+            class="inline-block px-8 py-3.5 bg-azul text-hueso font-bold rounded-xl hover:bg-terracota hover:text-white transition-all shadow-md active:scale-95 text-sm"
+          >
+            Preguntar por Disponibilidad / Pack Escolar
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Collage Image Column (Right on Desktop) -->
+      <div class="lg:col-span-6 order-1 lg:order-2">
+        <div class="relative">
+          <!-- Background decoration -->
+          <div class="absolute inset-0 bg-ocre/10 rounded-[2.5rem] rotate-2 scale-[0.98] blur-xs"></div>
+          
+          <!-- Image -->
+          <div class="relative bg-white p-3 sm:p-5 rounded-[2.5rem] shadow-xl border border-azul/5 overflow-hidden">
+            <img 
+              src="/images/accessories.png" 
+              alt="Ecosistema de accesorios literarios de Yatiediciones - agendas, pegatinas, chapitas y telares" 
+              class="w-full h-auto object-cover rounded-[1.8rem] hover:scale-[1.01] transition-transform duration-500"
+              loading="lazy"
+            />
+            
+            <!-- Overlay visual highlights tag -->
+            <div class="absolute top-8 left-8 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full border border-azul/10 shadow-md">
+              <span class="text-xs font-bold text-azul uppercase tracking-widest">Colección Artesanal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

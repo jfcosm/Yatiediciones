@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --color-hueso: #F7F4EB;
+  --color-terracota: #C15C3D;
+  --color-ocre: #D89B48;
+  --color-verde: #4D6D53;
+  --color-azul: #1F3746;
+
+  --font-display: "Fredoka", system-ui, sans-serif;
+  --font-sans: "Nunito", system-ui, sans-serif;
+}
