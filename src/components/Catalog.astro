@@ -1,56 +1,65 @@
 ---
+import { translations } from '../i18n/translations';
 import BookCard from './BookCard.astro';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const activeLang = lang || 'es';
+const t = translations[activeLang as keyof typeof translations] || translations.es;
 
 const books = [
   {
-    title: "Los cuentos andinos del Achachila Zenón",
-    subtitle: "Historias del Altiplano",
-    description: "Un viaje a las cumbres del norte chileno guiado por el abuelo Zenón, quien comparte leyendas sobre la Pachamama, las estrellas andinas y la vida comunitaria en las alturas del altiplano chileno.",
+    title: t.books.zenon.title,
+    subtitle: t.books.zenon.subtitle,
+    description: t.books.zenon.description,
     imageSrc: "/images/zenon_cover.png",
-    tags: ["Tradición", "Cosmovisión", "Coquimbo / Altiplano"],
-    ageGroup: "6-12 años"
+    tags: t.books.zenon.tags,
+    ageGroup: t.books.zenon.age
   },
   {
-    title: "El diario de Kumi",
-    subtitle: "Vivencias de Identidad",
-    description: "A través del diario íntimo de Kumi, descubrimos el norte y centro de Chile con ojos curiosos. Un relato conmovedor sobre la familia, la pertenencia cultural y el amor por los saberes ancestrales locales.",
+    title: t.books.kumi.title,
+    subtitle: t.books.kumi.subtitle,
+    description: t.books.kumi.description,
     imageSrc: "/images/kumi_cover.png",
-    tags: ["Identidad", "Norte Chico", "Aventura"],
-    ageGroup: "8-12 años"
+    tags: t.books.kumi.tags,
+    ageGroup: t.books.kumi.age
   },
   {
-    title: "Kurmi y los secretos de la Patagonia",
-    subtitle: "Exploración Austral",
-    description: "Kurmi recorre los bosques milenarios y glaciares de la Patagonia chilena junto a un noble huemul, descubriendo los tesoros ecológicos y culturales del extremo sur de Chile.",
+    title: t.books.kurmi.title,
+    subtitle: t.books.kurmi.subtitle,
+    description: t.books.kurmi.description,
     imageSrc: "/images/kurmi_cover.png",
-    tags: ["Patagonia", "Ecológico", "Fauna Nativa"],
-    ageGroup: "5-10 años"
+    tags: t.books.kurmi.tags,
+    ageGroup: t.books.kurmi.age
   }
 ];
 ---
 <section id="catalog" class="py-24 bg-hueso/50 relative overflow-hidden">
   
   <!-- Background design shapes -->
-  <div class="absolute bottom-20 right-0 w-80 h-80 bg-terracota/5 rounded-full blur-2xl pointer-events-none"></div>
-  <div class="absolute top-10 left-10 w-64 h-64 bg-verde/5 rounded-full blur-2xl pointer-events-none"></div>
+  <div class="absolute bottom-20 right-0 dir-rtl:left-0 dir-rtl:right-auto w-80 h-80 bg-terracota/5 rounded-full blur-2xl pointer-events-none"></div>
+  <div class="absolute top-10 left-10 dir-rtl:right-10 dir-rtl:left-auto w-64 h-64 bg-verde/5 rounded-full blur-2xl pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
     
     <!-- Title Section -->
     <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-      <span class="text-sm font-bold uppercase tracking-widest text-verde bg-verde/10 px-4 py-1.5 rounded-full">Nuestro Catálogo</span>
+      <span class="text-sm font-bold uppercase tracking-widest text-verde bg-verde/10 px-4 py-1.5 rounded-full">{t.catalog.tag}</span>
       <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-azul">
-        Historias que educan, rescatan y cobran vida
+        {t.catalog.title}
       </h2>
       <p class="text-base sm:text-lg text-azul/70 font-medium">
-        Libros diseñados para fomentar la lectura comprensiva, el aprecio por las culturas originarias y el desarrollo artístico.
+        {t.catalog.desc}
       </p>
     </div>
 
     <!-- Books Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
       {books.map((book) => (
-        <BookCard {...book} />
+        <BookCard {...book} ctaText={t.catalog.bookCta} />
       ))}
     </div>
 
@@ -58,20 +67,20 @@ const books = [
     <div class="mt-20 relative rounded-3xl bg-gradient-to-r from-terracota via-terracota to-ocre text-white p-8 md:p-12 shadow-xl overflow-hidden group">
       
       <!-- Decorative circles -->
-      <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-xl"></div>
-      <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-20 -mb-20 blur-xl"></div>
+      <div class="absolute top-0 right-0 dir-rtl:left-0 dir-rtl:right-auto w-64 h-64 bg-white/5 rounded-full -mr-20 dir-rtl:-ml-20 -mt-20 blur-xl"></div>
+      <div class="absolute bottom-0 left-0 dir-rtl:right-0 dir-rtl:left-auto w-48 h-48 bg-white/5 rounded-full -ml-20 dir-rtl:-mr-20 -mb-20 blur-xl"></div>
 
-      <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-start">
         <!-- Text Column -->
         <div class="lg:col-span-8 space-y-4">
           <div class="inline-flex items-center gap-2 bg-white/20 border border-white/25 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
-            🎨 ¡Experiencia Interactiva!
+            {t.catalog.bannerTag}
           </div>
           <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight">
-            Nuestros libros vienen listos para ser coloreados por los niños
+            {t.catalog.bannerTitle}
           </h3>
           <p class="text-white/90 text-base md:text-lg font-medium leading-relaxed max-w-3xl">
-            Cada ilustración original está adaptada como lienzo. Así, los niños interactúan directamente con la historia, coloreando los trajes tradicionales, paisajes autóctonos y animales típicos, reforzando la retención de los contenidos y su propia expresión creativa.
+            {t.catalog.bannerDesc}
           </p>
         </div>
 
@@ -81,14 +90,14 @@ const books = [
             href="#contact" 
             class="inline-block w-full lg:w-auto text-center px-8 py-4 bg-azul text-white font-extrabold rounded-full hover:bg-hueso hover:text-azul hover:scale-105 active:scale-95 transition-all shadow-lg shadow-azul/20 text-base md:text-lg"
           >
-            Solicitar una Muestra Gratuita
+            {t.catalog.bannerCta}
           </a>
         </div>
       </div>
 
-      <!-- Coloring Pencil Decorative Elements (Mock CSS) -->
-      <div class="absolute bottom-0 right-12 opacity-10 pointer-events-none hidden md:block text-8xl transform rotate-12 translate-y-6">
-        ✏️🖍️🖌️
+      <!-- Coloring Pencil Decorative Elements -->
+      <div class="absolute bottom-0 right-12 dir-rtl:left-12 dir-rtl:right-auto opacity-10 pointer-events-none hidden md:block text-8xl transform rotate-12 translate-y-6">
+        ✏️🖍️
       </div>
 
     </div>

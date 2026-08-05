@@ -1,49 +1,37 @@
 ---
-const workshops = [
-  {
-    title: "Cuentacuentos y Mediación Lector",
-    desc: "Sesiones narrativas dinámicas donde leemos relatos originarios, interactuamos con títeres o telares y abrimos la conversación sobre nuestras raíces.",
-    duration: "45-60 min",
-    audience: "Educación Parvularia y Básica",
-    icon: "🗣️"
-  },
-  {
-    title: "Taller de Autoedición y Creación de Libros",
-    desc: "Un taller práctico donde los alumnos escriben sus propios microrrelatos familiares y arman un mini-libro coloreado e ilustrado por ellos mismos.",
-    duration: "90 min (2 sesiones)",
-    audience: "Enseñanza Básica y Media",
-    icon: "✍️"
-  },
-  {
-    title: "Clubes de Lectura y Diálogo Intercultural",
-    desc: "Espacios de lectura comunitaria guiados por Carmen Clavijo para reflexionar sobre mitología diaguita, mapuche y andina, promoviendo el respeto a la diversidad.",
-    duration: "Semanal",
-    audience: "Docentes, padres y comunidad",
-    icon: "🛖"
-  }
-];
+import { translations } from '../i18n/translations';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const activeLang = lang || 'es';
+const t = translations[activeLang as keyof typeof translations] || translations.es;
+
+const icons = ["🗣️", "✍️", "🛖"];
 ---
 <section id="services" class="py-24 bg-hueso/30 relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Header -->
     <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-      <span class="text-sm font-bold uppercase tracking-widest text-verde bg-verde/10 px-4 py-1.5 rounded-full">Talleres e Intervenciones</span>
+      <span class="text-sm font-bold uppercase tracking-widest text-verde bg-verde/10 px-4 py-1.5 rounded-full">{t.workshops.tag}</span>
       <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-azul">
-        Llevamos las historias a tu colegio y comunidad
+        {t.workshops.title}
       </h2>
       <p class="text-base sm:text-lg text-azul/70 font-medium">
-        Fomentamos la lectoescritura interactiva mediante actividades pedagógicas con pertinencia cultural regional.
+        {t.workshops.desc}
       </p>
     </div>
 
     <!-- Workshops Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-      {workshops.map((workshop) => (
+      {t.workshops.items.map((workshop, idx) => (
         <div class="bg-white rounded-3xl p-8 border border-azul/5 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
-          <div class="space-y-6">
+          <div class="space-y-6 text-start">
             <span class="text-4xl block w-14 h-14 rounded-2xl bg-verde/10 flex items-center justify-center text-center group-hover:scale-110 transition-transform">
-              {workshop.icon}
+              {icons[idx] || "📚"}
             </span>
             <div class="space-y-2">
               <h3 class="font-display text-xl font-extrabold text-azul group-hover:text-verde transition-colors">{workshop.title}</h3>
@@ -52,13 +40,13 @@ const workshops = [
           </div>
 
           <!-- Metadata info -->
-          <div class="pt-6 mt-6 border-t border-azul/5 grid grid-cols-2 gap-2 text-xs font-bold text-azul/60 uppercase tracking-wider">
+          <div class="pt-6 mt-6 border-t border-azul/5 grid grid-cols-2 gap-2 text-xs font-bold text-azul/60 uppercase tracking-wider text-start">
             <div>
-              <span class="block text-[10px] text-azul/40">Duración:</span>
+              <span class="block text-[10px] text-azul/40">Info / Time:</span>
               <span>{workshop.duration}</span>
             </div>
             <div>
-              <span class="block text-[10px] text-azul/40">Público:</span>
+              <span class="block text-[10px] text-azul/40">Audience:</span>
               <span>{workshop.audience}</span>
             </div>
           </div>
@@ -71,9 +59,9 @@ const workshops = [
       <!-- Backdrop design circles -->
       <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/5 rounded-full blur-lg"></div>
       
-      <h3 class="font-display text-2xl sm:text-3xl font-extrabold">¿Quieres realizar un taller en tu establecimiento?</h3>
+      <h3 class="font-display text-2xl sm:text-3xl font-extrabold">{t.workshops.ctaTitle}</h3>
       <p class="text-white/80 max-w-xl mx-auto font-medium">
-        Adaptamos los talleres a las necesidades curriculares de tu colegio. Trabajamos con fondos SEP y apoyos municipales.
+        {t.workshops.ctaDesc}
       </p>
       
       <div class="pt-2">
@@ -81,7 +69,7 @@ const workshops = [
           href="#contact" 
           class="inline-block px-10 py-4 bg-terracota text-white font-extrabold rounded-full hover:bg-ocre hover:scale-105 active:scale-95 transition-all shadow-md shadow-terracota/20 hover:shadow-ocre/20 text-base"
         >
-          Cotizar un taller para tu colegio
+          {t.workshops.ctaBtn}
         </a>
       </div>
     </div>

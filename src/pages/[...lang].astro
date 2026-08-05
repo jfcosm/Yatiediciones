@@ -1,0 +1,45 @@
+---
+import { translations } from '../i18n/translations';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Catalog from '../components/Catalog.astro';
+import Accessories from '../components/Accessories.astro';
+import Services from '../components/Services.astro';
+import Footer from '../components/Footer.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'arn' } },
+    { params: { lang: 'qu' } },
+    { params: { lang: 'ay' } },
+    { params: { lang: 'fr' } },
+    { params: { lang: 'it' } },
+    { params: { lang: 'de' } },
+    { params: { lang: 'ja' } },
+    { params: { lang: 'ko' } },
+    { params: { lang: 'ar' } },
+    { params: { lang: 'el' } },
+    { params: { lang: 'hi' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const activeLang = lang || 'es';
+const t = translations[activeLang as keyof typeof translations] || translations.es;
+---
+
+<Layout title={`Yatiediciones | ${t.hero.title}`} lang={activeLang}>
+	<Header lang={activeLang} />
+	<main>
+		<Hero lang={activeLang} />
+		<About lang={activeLang} />
+		<Catalog lang={activeLang} />
+		<Accessories lang={activeLang} />
+		<Services lang={activeLang} />
+	</main>
+	<Footer lang={activeLang} />
+</Layout>

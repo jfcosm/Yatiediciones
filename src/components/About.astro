@@ -1,8 +1,17 @@
 ---
+import { translations } from '../i18n/translations';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const activeLang = lang || 'es';
+const t = translations[activeLang as keyof typeof translations] || translations.es;
 ---
 <section id="about" class="py-20 bg-white relative">
   <!-- Decorative background circle -->
-  <div class="absolute -top-10 left-0 w-48 h-96 bg-verde/5 rounded-r-full blur-2xl pointer-events-none"></div>
+  <div class="absolute -top-10 start-0 w-48 h-96 bg-verde/5 rounded-e-full blur-2xl pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -10,32 +19,32 @@
       <!-- Graphic/Feature Column -->
       <div class="lg:col-span-5 space-y-6">
         <div class="relative bg-hueso p-8 rounded-3xl border border-azul/5 shadow-inner">
-          <div class="absolute -top-4 -right-4 bg-ocre text-white p-3.5 rounded-2xl shadow-lg text-2xl font-bold">
+          <div class="absolute -top-4 -end-4 bg-ocre text-white p-3.5 rounded-2xl shadow-lg text-2xl font-bold">
             🌵
           </div>
           
-          <h3 class="font-display text-2xl font-extrabold text-azul mb-4">Nuestra Esencia</h3>
+          <h3 class="font-display text-2xl font-extrabold text-azul mb-4">{t.about.essenceTitle}</h3>
           
           <ul class="space-y-6">
             <li class="flex gap-4">
               <span class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-xl bg-terracota/10 text-terracota text-lg font-bold">📖</span>
-              <div>
-                <h4 class="font-bold text-azul text-base">Rescate de la Memoria</h4>
-                <p class="text-sm text-azul/70 font-medium">Recuperamos relatos tradicionales y saberes ancestrales chilenos.</p>
+              <div class="text-start">
+                <h4 class="font-bold text-azul text-base">{t.about.v1Title}</h4>
+                <p class="text-sm text-azul/70 font-medium">{t.about.v1Desc}</p>
               </div>
             </li>
             <li class="flex gap-4">
               <span class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-xl bg-ocre/10 text-ocre text-lg font-bold">🤝</span>
-              <div>
-                <h4 class="font-bold text-azul text-base">Diálogo Intercultural</h4>
-                <p class="text-sm text-azul/70 font-medium">Tendemos puentes entre las culturas originarias y las nuevas generaciones.</p>
+              <div class="text-start">
+                <h4 class="font-bold text-azul text-base">{t.about.v2Title}</h4>
+                <p class="text-sm text-azul/70 font-medium">{t.about.v2Desc}</p>
               </div>
             </li>
             <li class="flex gap-4">
               <span class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-xl bg-verde/10 text-verde text-lg font-bold">🎨</span>
-              <div>
-                <h4 class="font-bold text-azul text-base">Literatura Viva</h4>
-                <p class="text-sm text-azul/70 font-medium">Libros interactivos listos para colorear y personalizar por sus lectores.</p>
+              <div class="text-start">
+                <h4 class="font-bold text-azul text-base">{t.about.v3Title}</h4>
+                <p class="text-sm text-azul/70 font-medium">{t.about.v3Desc}</p>
               </div>
             </li>
           </ul>
@@ -43,28 +52,28 @@
       </div>
 
       <!-- Text Column -->
-      <div class="lg:col-span-7 space-y-6">
-        <span class="text-sm font-bold uppercase tracking-widest text-terracota">Nuestra Historia</span>
+      <div class="lg:col-span-7 space-y-6 text-start">
+        <span class="text-sm font-bold uppercase tracking-widest text-terracota">{t.about.tag}</span>
         <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-azul leading-tight">
-          Literatura con pertenencia cultural, nacida en la Región de Coquimbo
+          {t.about.title}
         </h2>
         
         <div class="space-y-4 text-base sm:text-lg text-azul/80 leading-relaxed font-medium">
           <p>
-            <strong class="text-azul font-bold">Yatiediciones</strong> es un proyecto editorial independiente impulsado por la educadora y gestora cultural <strong class="text-terracota font-bold">Carmen Clavijo Morales</strong>, comprometido con la difusión y rescate de la memoria colectiva y la educación intercultural.
+            {t.about.p1}
           </p>
           <p>
-            Nuestras obras nacen en el norte de Chile pero abrazan todo el territorio, rescatando mitos, cosmovisiones y leyendas andinas, diaguitas, selk'nam y mapuches. Creemos en un aprendizaje activo donde los niños y las niñas no sean meros espectadores, sino que interactúen con el relato y se conecten con sus raíces coloreando cada página.
+            {t.about.p2}
           </p>
         </div>
 
         <!-- Quote Block -->
-        <blockquote class="border-l-4 border-ocre bg-hueso/50 p-6 rounded-r-2xl italic text-azul/90 font-medium relative">
-          <span class="absolute top-2 left-2 text-4xl text-ocre/20 font-serif leading-none">“</span>
-          <p class="pl-4 relative z-10">
-            "Buscamos que las historias de nuestros pueblos originarios vuelvan a encender la chispa de la imaginación en las escuelas y hogares, invitando al juego y al diálogo intercultural."
+        <blockquote class="border-s-4 border-ocre bg-hueso/50 p-6 rounded-e-2xl italic text-azul/90 font-medium relative">
+          <span class="absolute top-2 start-2 text-4xl text-ocre/20 font-serif leading-none">“</span>
+          <p class="ps-4 relative z-10">
+            {t.about.quote}
           </p>
-          <cite class="block pl-4 mt-2 text-sm font-bold text-azul/60 not-italic">— Carmen Clavijo Morales, Fundadora</cite>
+          <cite class="block ps-4 mt-2 text-sm font-bold text-azul/60 not-italic">— {t.about.quoteAuthor}</cite>
         </blockquote>
       </div>
 

@@ -1,4 +1,13 @@
 ---
+import { translations } from '../i18n/translations';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const activeLang = lang || 'es';
+const t = translations[activeLang as keyof typeof translations] || translations.es;
 ---
 <footer id="contact" class="bg-azul text-white pt-24 pb-12 relative overflow-hidden">
   
@@ -14,15 +23,15 @@
     <!-- Contact Form & Info Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-20 border-b border-white/10">
       
-      <!-- Contact Info & Map (Left on Desktop) -->
-      <div class="lg:col-span-5 space-y-8">
+      <!-- Contact Info (Left on Desktop) -->
+      <div class="lg:col-span-5 space-y-8 text-start">
         <div class="space-y-4">
-          <span class="text-xs font-bold uppercase tracking-widest text-ocre">Hablemos</span>
+          <span class="text-xs font-bold uppercase tracking-widest text-ocre">{t.footer.contactTag}</span>
           <h2 class="font-display text-3xl sm:text-4xl font-extrabold leading-tight">
-            ¿Cómo te podemos ayudar?
+            {t.footer.contactTitle}
           </h2>
           <p class="text-white/70 font-medium">
-            ¿Quieres adquirir algún título, cotizar accesorios personalizados o coordinar un taller en tu colegio? Escríbenos y te responderemos a la brevedad.
+            {t.footer.contactDesc}
           </p>
         </div>
 
@@ -30,21 +39,21 @@
           <div class="flex items-start gap-4">
             <span class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 text-lg">📍</span>
             <div>
-              <h4 class="font-bold text-white text-base">Ubicación</h4>
+              <h4 class="font-bold text-white text-base">{t.footer.contactLocLabel}</h4>
               <p class="text-sm text-white/70">La Serena / Coquimbo, Región de Coquimbo, Chile</p>
             </div>
           </div>
           <div class="flex items-start gap-4">
             <span class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 text-lg">📧</span>
             <div>
-              <h4 class="font-bold text-white text-base">Correo Electrónico</h4>
+              <h4 class="font-bold text-white text-base">{t.footer.contactMailLabel}</h4>
               <a href="mailto:contacto@yatiediciones.cl" class="text-sm text-ocre hover:underline">contacto@yatiediciones.cl</a>
             </div>
           </div>
           <div class="flex items-start gap-4">
             <span class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 text-lg">📞</span>
             <div>
-              <h4 class="font-bold text-white text-base">Teléfono / WhatsApp</h4>
+              <h4 class="font-bold text-white text-base">{t.footer.contactPhoneLabel}</h4>
               <a href="tel:+56912345678" class="text-sm text-white/70 hover:text-white transition-colors">+56 9 1234 5678</a>
             </div>
           </div>
@@ -52,7 +61,7 @@
 
         <!-- Social Media Badge -->
         <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
-          <span class="block text-xs font-bold uppercase tracking-wider text-white/60 mb-3">Síguenos en Redes</span>
+          <span class="block text-xs font-bold uppercase tracking-wider text-white/60 mb-3">{t.footer.contactFollow}</span>
           <div class="flex gap-4">
             <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-terracota hover:scale-105 active:scale-95 transition-all flex items-center justify-center font-bold text-sm">IG</a>
             <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-terracota hover:scale-105 active:scale-95 transition-all flex items-center justify-center font-bold text-sm">FB</a>
@@ -62,28 +71,28 @@
       </div>
 
       <!-- Lead Capture Form (Right on Desktop) -->
-      <div class="lg:col-span-7 bg-white/5 p-8 rounded-3xl border border-white/10 relative">
-        <h3 class="font-display text-2xl font-bold mb-6">Formulario de Contacto</h3>
+      <div class="lg:col-span-7 bg-white/5 p-8 rounded-3xl border border-white/10 relative text-start">
+        <h3 class="font-display text-2xl font-bold mb-6">{t.footer.formTitle}</h3>
         
-        <form class="space-y-5" onsubmit="event.preventDefault(); alert('¡Mensaje enviado con éxito! Nos comunicaremos contigo pronto.');">
+        <form class="space-y-5" id="lead-form">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-2">
-              <label for="name" class="block text-xs font-bold uppercase tracking-wider text-white/70">Nombre Completo</label>
+              <label for="name" class="block text-xs font-bold uppercase tracking-wider text-white/70">{t.footer.formName}</label>
               <input 
                 type="text" 
                 id="name" 
                 required 
-                placeholder="Ej. Juan Pérez" 
+                placeholder={t.footer.formNamePlace} 
                 class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-ocre focus:ring-1 focus:ring-ocre text-white placeholder-white/30"
               />
             </div>
             <div class="space-y-2">
-              <label for="email" class="block text-xs font-bold uppercase tracking-wider text-white/70">Correo Electrónico</label>
+              <label for="email" class="block text-xs font-bold uppercase tracking-wider text-white/70">{t.footer.formEmail}</label>
               <input 
                 type="email" 
                 id="email" 
                 required 
-                placeholder="Ej. juan@correo.com" 
+                placeholder={t.footer.formEmailPlace} 
                 class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-ocre focus:ring-1 focus:ring-ocre text-white placeholder-white/30"
               />
             </div>
@@ -91,49 +100,49 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-2">
-              <label for="role" class="block text-xs font-bold uppercase tracking-wider text-white/70">Soy...</label>
+              <label for="role" class="block text-xs font-bold uppercase tracking-wider text-white/70">{t.footer.formRole}</label>
               <select 
                 id="role" 
-                class="w-full bg-white/10 border border-white/15 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-ocre text-white appearance-none"
+                class="w-full bg-white/10 border border-white/15 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-ocre text-white appearance-none cursor-pointer"
                 style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%226%22 fill=%22white%22><polygon points=%220,0 12,0 6,6%22/></svg>'); background-position: right 1rem center; background-repeat: no-repeat;"
               >
-                <option value="padre" class="bg-azul">Padre / Madre / Apoderado</option>
-                <option value="docente" class="bg-azul">Educador / Docente</option>
-                <option value="colegio" class="bg-azul">Representante de Colegio / Institución</option>
-                <option value="otro" class="bg-azul">Librería / Otro</option>
+                <option value="padre" class="bg-azul">{t.footer.roleParent}</option>
+                <option value="docente" class="bg-azul">{t.footer.roleTeacher}</option>
+                <option value="colegio" class="bg-azul">{t.footer.roleSchool}</option>
+                <option value="otro" class="bg-azul">{t.footer.roleOther}</option>
               </select>
             </div>
             <div class="space-y-2">
-              <label for="interest" class="block text-xs font-bold uppercase tracking-wider text-white/70">Interés Principal</label>
+              <label for="interest" class="block text-xs font-bold uppercase tracking-wider text-white/70">{t.footer.formInterest}</label>
               <select 
                 id="interest" 
-                class="w-full bg-white/10 border border-white/15 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-ocre text-white appearance-none"
+                class="w-full bg-white/10 border border-white/15 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-ocre text-white appearance-none cursor-pointer"
                 style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%226%22 fill=%22white%22><polygon points=%220,0 12,0 6,6%22/></svg>'); background-position: right 1rem center; background-repeat: no-repeat;"
               >
-                <option value="comprar" class="bg-azul">Adquirir libros / catálogo</option>
-                <option value="taller" class="bg-azul">Cotizar un taller educativo</option>
-                <option value="accesorios" class="bg-azul">Accesorios literarios</option>
-                <option value="otro" class="bg-azul">Otras consultas</option>
+                <option value="comprar" class="bg-azul">{t.footer.interestBuy}</option>
+                <option value="taller" class="bg-azul">{t.footer.interestWorkshop}</option>
+                <option value="accesorios" class="bg-azul">{t.footer.interestAcc}</option>
+                <option value="otro" class="bg-azul">{t.footer.interestOther}</option>
               </select>
             </div>
           </div>
 
           <div class="space-y-2">
-            <label for="message" class="block text-xs font-bold uppercase tracking-wider text-white/70">Mensaje o Consulta</label>
+            <label for="message" class="block text-xs font-bold uppercase tracking-wider text-white/70">{t.footer.formMsg}</label>
             <textarea 
               id="message" 
               rows="4" 
               required
-              placeholder="Cuéntanos en qué te podemos ayudar..." 
+              placeholder={t.footer.formMsgPlace} 
               class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-ocre focus:ring-1 focus:ring-ocre text-white placeholder-white/30 resize-none"
             ></textarea>
           </div>
 
           <button 
             type="submit" 
-            class="w-full py-4 px-6 bg-terracota text-white font-extrabold rounded-xl hover:bg-ocre transition-all shadow-md active:scale-98 text-sm"
+            class="w-full py-4 px-6 bg-terracota text-white font-extrabold rounded-xl hover:bg-ocre transition-all shadow-md active:scale-98 text-sm cursor-pointer"
           >
-            Enviar Mensaje
+            {t.footer.formBtn}
           </button>
         </form>
       </div>
@@ -150,19 +159,28 @@
           alt="Yatiediciones" 
           class="h-10 w-10 object-contain rounded-full border border-white/20"
         />
-        <div class="flex flex-col text-left">
+        <div class="flex flex-col text-start">
           <span class="font-display text-lg font-bold tracking-wide text-white">Yatiediciones</span>
-          <span class="text-[9px] uppercase tracking-widest text-ocre font-bold -mt-1">Libros con identidad</span>
+          <span class="text-[9px] uppercase tracking-widest text-ocre font-bold -mt-1">{t.footer.slogan}</span>
         </div>
       </a>
 
       <!-- Credits / Copyright -->
-      <div class="text-center md:text-right text-xs text-white/40 space-y-1">
-        <p>&copy; {new Date().getFullYear()} Yatiediciones. Todos los derechos reservados.</p>
-        <p>Desarrollado con orgullo en Coquimbo, Chile 🇨🇱</p>
+      <div class="text-center md:text-right dir-rtl:text-left text-xs text-white/40 space-y-1">
+        <p>&copy; {new Date().getFullYear()} Yatiediciones. {t.footer.copyright}</p>
+        <p>{t.footer.credit}</p>
       </div>
 
     </div>
 
   </div>
 </footer>
+
+<script define:vars={{ alertMessage: t.footer.alertSuccess }}>
+  const form = document.getElementById('lead-form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert(alertMessage);
+    form.reset();
+  });
+</script>

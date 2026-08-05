@@ -1,4 +1,22 @@
 ---
+import { translations, languages } from '../i18n/translations';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const activeLang = lang || 'es';
+const t = translations[activeLang as keyof typeof translations] || translations.es;
+
+const getLangLink = (langCode: string) => {
+  const base = import.meta.env.BASE_URL;
+  const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
+  if (langCode === 'es') {
+    return cleanBase || '/';
+  }
+  return `${cleanBase}/${langCode}`;
+};
 ---
 <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-5 bg-transparent border-b border-transparent">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,24 +29,55 @@
           alt="Yatiediciones Logo" 
           class="h-12 w-12 object-contain rounded-full border-2 border-terracota group-hover:scale-105 transition-transform duration-300"
         />
-        <div class="flex flex-col">
+        <div class="flex flex-col text-start">
           <span class="font-display text-xl font-bold tracking-wide text-azul group-hover:text-terracota transition-colors">Yatiediciones</span>
-          <span class="text-[10px] uppercase tracking-widest text-ocre font-bold -mt-1">Editorial</span>
+          <span class="text-[10px] uppercase tracking-widest text-ocre font-bold -mt-1">{t.footer.slogan}</span>
         </div>
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-8">
-        <a href="#" class="text-azul font-semibold hover:text-terracota transition-colors py-2">Inicio</a>
-        <a href="#about" class="text-azul font-semibold hover:text-terracota transition-colors py-2">Sobre Nosotros</a>
-        <a href="#catalog" class="text-azul font-semibold hover:text-terracota transition-colors py-2">Catálogo</a>
-        <a href="#accessories" class="text-azul font-semibold hover:text-terracota transition-colors py-2">Accesorios</a>
-        <a href="#services" class="text-azul font-semibold hover:text-terracota transition-colors py-2">Talleres</a>
-        <a href="#contact" class="px-5 py-2.5 bg-terracota text-white font-bold rounded-full hover:bg-ocre hover:scale-105 transition-all shadow-md shadow-terracota/20 hover:shadow-ocre/20">Contacto</a>
+      <nav class="hidden md:flex items-center space-x-6 lg:space-x-8">
+        <a href="#" class="text-azul font-semibold hover:text-terracota transition-colors py-2">{t.nav.home}</a>
+        <a href="#about" class="text-azul font-semibold hover:text-terracota transition-colors py-2">{t.nav.about}</a>
+        <a href="#catalog" class="text-azul font-semibold hover:text-terracota transition-colors py-2">{t.nav.catalog}</a>
+        <a href="#accessories" class="text-azul font-semibold hover:text-terracota transition-colors py-2">{t.nav.accessories}</a>
+        <a href="#services" class="text-azul font-semibold hover:text-terracota transition-colors py-2">{t.nav.workshops}</a>
+        <a href="#contact" class="px-4 py-2 bg-terracota text-white font-bold rounded-full hover:bg-ocre hover:scale-105 transition-all shadow-md shadow-terracota/20 hover:shadow-ocre/20">{t.nav.contact}</a>
+
+        <!-- Desktop Language Selector -->
+        <div class="relative inline-block text-start" id="lang-selector-container">
+          <button 
+            id="lang-selector-btn" 
+            type="button" 
+            class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-sm font-bold text-azul hover:text-terracota border border-azul/10 hover:border-terracota transition-all bg-white/50 cursor-pointer"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span>🌐 {languages[activeLang as keyof typeof languages]}</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          
+          <div 
+            id="lang-dropdown" 
+            class="hidden absolute right-0 dir-left:left-0 dir-left:right-auto mt-2 w-48 rounded-2xl bg-white border border-azul/10 shadow-lg py-2 z-50 max-h-80 overflow-y-auto"
+          >
+            {Object.entries(languages).map(([code, name]) => (
+              <a 
+                href={getLangLink(code)} 
+                class={`block px-4 py-2 text-sm font-semibold hover:bg-hueso hover:text-terracota transition-colors text-start ${activeLang === code ? 'text-terracota bg-hueso/50 font-bold' : 'text-azul'}`}
+              >
+                {name}
+              </a>
+            ))}
+          </div>
+        </div>
       </nav>
 
-      <!-- Mobile Menu Button -->
-      <div class="md:hidden flex items-center">
+      <!-- Mobile Menu Button & Lang Selector -->
+      <div class="md:hidden flex items-center gap-3">
+        <!-- Mobile Menu Button -->
         <button 
           id="mobile-menu-btn" 
           type="button" 
@@ -54,13 +103,28 @@
   <!-- Mobile Navigation Drawer -->
   <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-hueso/95 backdrop-blur-lg border-b border-azul/10 shadow-lg transition-all duration-300">
     <div class="px-4 pt-2 pb-6 space-y-3 sm:px-3 text-center flex flex-col">
-      <a href="#" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">Inicio</a>
-      <a href="#about" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">Sobre Nosotros</a>
-      <a href="#catalog" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">Catálogo</a>
-      <a href="#accessories" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">Accesorios</a>
-      <a href="#services" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">Talleres</a>
-      <div class="pt-4">
-        <a href="#contact" class="mobile-link inline-block px-8 py-3 bg-terracota text-white font-bold rounded-full hover:bg-ocre transition-all shadow-md shadow-terracota/20">Contacto</a>
+      <a href="#" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">{t.nav.home}</a>
+      <a href="#about" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">{t.nav.about}</a>
+      <a href="#catalog" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">{t.nav.catalog}</a>
+      <a href="#accessories" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">{t.nav.accessories}</a>
+      <a href="#services" class="mobile-link text-lg font-bold text-azul hover:text-terracota transition-colors py-3 border-b border-azul/5">{t.nav.workshops}</a>
+      <div class="pt-2">
+        <a href="#contact" class="mobile-link inline-block px-8 py-3 bg-terracota text-white font-bold rounded-full hover:bg-ocre transition-all shadow-md shadow-terracota/20">{t.nav.contact}</a>
+      </div>
+
+      <!-- Mobile Languages list -->
+      <div class="pt-6 border-t border-azul/10">
+        <span class="block text-xs font-bold text-azul/40 uppercase tracking-wider mb-3 text-center">Idioma / Language</span>
+        <div class="flex flex-wrap justify-center gap-2 max-w-sm mx-auto">
+          {Object.entries(languages).map(([code, name]) => (
+            <a 
+              href={getLangLink(code)} 
+              class={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border ${activeLang === code ? 'bg-terracota border-terracota text-white' : 'bg-white border-azul/10 text-azul hover:border-terracota'}`}
+            >
+              {name}
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   </div>
@@ -73,6 +137,9 @@
   const hamburgerIcon = document.getElementById('hamburger-icon');
   const closeIcon = document.getElementById('close-icon');
   const mobileLinks = document.querySelectorAll('.mobile-link');
+  
+  const langBtn = document.getElementById('lang-selector-btn');
+  const langDropdown = document.getElementById('lang-dropdown');
 
   // Sticky Header logic on scroll
   const handleScroll = () => {
@@ -86,7 +153,6 @@
   };
 
   window.addEventListener('scroll', handleScroll);
-  // Initial run in case the page is loaded scrolled
   handleScroll();
 
   // Mobile Menu drawer toggling
@@ -108,7 +174,6 @@
 
   mobileMenuBtn?.addEventListener('click', toggleMenu);
 
-  // Close menu when clicking on any link
   mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu?.classList.add('hidden');
@@ -116,5 +181,24 @@
       closeIcon?.classList.add('hidden');
       mobileMenuBtn?.setAttribute('aria-expanded', 'false');
     });
+  });
+
+  // Desktop Language Selector Dropdown Toggling
+  langBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isHidden = langDropdown?.classList.contains('hidden');
+    if (isHidden) {
+      langDropdown?.classList.remove('hidden');
+      langBtn.setAttribute('aria-expanded', 'true');
+    } else {
+      langDropdown?.classList.add('hidden');
+      langBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', () => {
+    langDropdown?.classList.add('hidden');
+    langBtn?.setAttribute('aria-expanded', 'false');
   });
 </script>
