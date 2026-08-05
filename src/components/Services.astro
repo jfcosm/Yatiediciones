@@ -15,6 +15,24 @@ const workshopImages = [
   "/images/taller2.JPG",
   "/images/taller3.JPG"
 ];
+
+const labels = {
+  es: { duration: "Duración / Info:", audience: "Público:" },
+  en: { duration: "Duration / Info:", audience: "Audience:" },
+  arn: { duration: "Pichin rupa / Info:", audience: "Che:" },
+  qu: { duration: "Pacha / Info:", audience: "Runa:" },
+  ay: { duration: "Pacha / Info:", audience: "Jaqi:" },
+  fr: { duration: "Durée / Info:", audience: "Public:" },
+  it: { duration: "Durata / Info:", audience: "Destinatari:" },
+  de: { duration: "Dauer / Info:", audience: "Zielgruppe:" },
+  ja: { duration: "所要時間 / 詳細:", audience: "対象:" },
+  ko: { duration: "소요 시간 / 정보:", audience: "대상:" },
+  ar: { duration: "المدة / معلومات:", audience: "الجمهور:" },
+  el: { duration: "Διάρκεια / Πληροφορίες:", audience: "Κοινό:" },
+  hi: { duration: "अवधि / जानकारी:", audience: "दर्शक:" }
+};
+
+const activeLabels = labels[activeLang as keyof typeof labels] || labels.es;
 ---
 <section id="services" class="py-24 bg-hueso/30 relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,11 +75,11 @@ const workshopImages = [
           <!-- Metadata info -->
           <div class="pt-6 mt-6 border-t border-azul/5 grid grid-cols-2 gap-2 text-xs font-bold text-azul/60 uppercase tracking-wider text-start">
             <div>
-              <span class="block text-[10px] text-azul/40">Info / Time:</span>
+              <span class="block text-[10px] text-azul/40">{activeLabels.duration}</span>
               <span>{workshop.duration}</span>
             </div>
             <div>
-              <span class="block text-[10px] text-azul/40">Audience:</span>
+              <span class="block text-[10px] text-azul/40">{activeLabels.audience}</span>
               <span>{workshop.audience}</span>
             </div>
           </div>
