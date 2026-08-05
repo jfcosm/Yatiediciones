@@ -136,7 +136,7 @@ export const translations = {
       alertSuccess: "¡Mensaje enviado con éxito! Nos comunicaremos contigo pronto.",
       slogan: "Libros con identidad",
       copyright: "Todos los derechos reservados.",
-      credit: "Desarrollado con orgullo en Coquimbo, Chile 🇨🇱"
+      credit: "Hecho con la energía y amor de OrangeSpark"
     }
   },
   en: {
@@ -260,7 +260,7 @@ export const translations = {
       alertSuccess: "Message sent successfully! We will contact you soon.",
       slogan: "Books with identity",
       copyright: "All rights reserved.",
-      credit: "Proudly developed in Coquimbo, Chile 🇨🇱"
+      credit: "Made with the energy and love of OrangeSpark"
     }
   },
   arn: {
@@ -384,7 +384,7 @@ export const translations = {
       alertSuccess: "Werken successfully! Nütramkayiñ eymi pülle.",
       slogan: "Chillka folil ka identity",
       copyright: "All rights reserved.",
-      credit: "Proudly developed in Coquimbo, Chile 🇨🇱"
+      credit: "Deumangey OrangeSpark ñi newen ka poyewün mew"
     }
   },
   qu: {
@@ -508,7 +508,7 @@ export const translations = {
       alertSuccess: "¡Werkay successfully! Tupayku eymi pülle.",
       slogan: "Saphiwan saphiwanpas liwrukuna",
       copyright: "All rights reserved.",
-      credit: "Proudly developed in Coquimbo, Chile 🇨🇱"
+      credit: "OrangeSpark-pa kallpanwan munakuyninwanpas ruwasqa"
     }
   },
   // Continuing with the rest of the languages, keeping descriptions clean, accurate and comprehensive.
@@ -633,7 +633,7 @@ export const translations = {
       alertSuccess: "¡Werkaña successfully! Jikisiñani eymi.",
       slogan: "Saphiwan saphiwanpas pankakuna",
       copyright: "All rights reserved.",
-      credit: "Proudly developed in Coquimbo, Chile 🇨🇱"
+      credit: "OrangeSpark-na ch'amapampi munasiñapampi lurataki"
     }
   },
   fr: {
@@ -757,7 +757,7 @@ export const translations = {
       alertSuccess: "Message envoyé avec succès ! Nous vous contacterons bientôt.",
       slogan: "Livres avec identité",
       copyright: "Tous droits réservés.",
-      credit: "Fièrement développé à Coquimbo, Chili 🇨🇱"
+      credit: "Fait avec l'énergie et l'amour d'OrangeSpark"
     }
   },
   it: {
@@ -881,7 +881,7 @@ export const translations = {
       alertSuccess: "Messaggio inviato con successo! Ti contatteremo presto.",
       slogan: "Libri con identità",
       copyright: "Tutti i diritti riservati.",
-      credit: "Sviluppato con orgoglio a Coquimbo, Cile 🇨🇱"
+      credit: "Fatto con l'energia e l'amore di OrangeSpark"
     }
   },
   de: {
@@ -1005,7 +1005,7 @@ export const translations = {
       alertSuccess: "Nachricht erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.",
       slogan: "Bücher mit Identität",
       copyright: "Alle Rechte vorbehalten.",
-      credit: "Mit Stolz entwickelt in Coquimbo, Chile 🇨🇱"
+      credit: "Mit der Energie und Liebe von OrangeSpark gemacht"
     }
   },
   ja: {
@@ -1129,7 +1129,7 @@ export const translations = {
       alertSuccess: "送信が完了しました！追ってご連絡いたします。",
       slogan: "アイデンティティを伝える本",
       copyright: "All rights reserved.",
-      credit: "チリ・コキンボ州にて誇りを持って開発 🇨🇱"
+      credit: "OrangeSparkのエネルギーと愛を込めて"
     }
   },
   ko: {
@@ -1253,7 +1253,7 @@ export const translations = {
       alertSuccess: "메시지가 성공적으로 전송되었습니다! 곧 연락드리겠습니다.",
       slogan: "정체성을 담은 도서",
       copyright: "All rights reserved.",
-      credit: "칠레 코킴보 주에서 자랑스럽게 개발 🇨🇱"
+      credit: "OrangeSpark의 에너지와 사랑으로 제작됨"
     }
   },
   ar: {
@@ -1377,7 +1377,7 @@ export const translations = {
       alertSuccess: "تم إرسال الرسالة بنجاح! سنتصل بك قريباً.",
       slogan: "كتب ذات هوية",
       copyright: "جميع الحقوق محفوظة.",
-      credit: "طور بكل فخر في كوكيمبو، تشيلي 🇨🇱"
+      credit: "صنع بطاقة وحب OrangeSpark"
     }
   },
   el: {
@@ -1501,7 +1501,7 @@ export const translations = {
       alertSuccess: "Το μήνυμα στάλθηκε με επιτυχία! Θα επικοινωνήσουμε μαζί σας σύντομα.",
       slogan: "Βιβλία με ταυτότητα",
       copyright: "Όλα τα δικαιώματα διατηρούνται.",
-      credit: "Αναπτύχθηκε με υπερηφάνεια στο Κοκίμπο, Χιλή 🇨🇱"
+      credit: "Φτιαγμένο με την ενέργεια και την αγάπη της OrangeSpark"
     }
   },
   hi: {
@@ -1625,7 +1625,7 @@ export const translations = {
       alertSuccess: "संदेश सफलतापूर्वक भेजा गया! हम जल्द ही आपसे संपर्क करेंगे।",
       slogan: "पहचान वाली किताबें",
       copyright: "सर्वाधिकार सुरक्षित।",
-      credit: "चिली के कोकिम्बो में गर्व के साथ विकसित 🇨🇱"
+      credit: "OrangeSpark की ऊर्जा और प्यार से निर्मित"
     }
   }
 };
