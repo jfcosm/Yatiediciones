@@ -10,6 +10,11 @@ const activeLang = lang || 'es';
 const t = translations[activeLang as keyof typeof translations] || translations.es;
 
 const icons = ["🗣️", "✍️", "🛖"];
+const workshopImages = [
+  "/images/taller1.JPG",
+  "/images/taller2.JPG",
+  "/images/taller3.JPG"
+];
 ---
 <section id="services" class="py-24 bg-hueso/30 relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,11 +33,21 @@ const icons = ["🗣️", "✍️", "🛖"];
     <!-- Workshops Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
       {t.workshops.items.map((workshop, idx) => (
-        <div class="bg-white rounded-3xl p-8 border border-azul/5 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+        <div class="bg-white rounded-3xl p-6 border border-azul/5 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
           <div class="space-y-6 text-start">
-            <span class="text-4xl block w-14 h-14 rounded-2xl bg-verde/10 flex items-center justify-center text-center group-hover:scale-110 transition-transform">
-              {icons[idx] || "📚"}
-            </span>
+            <!-- Image Header -->
+            <div class="relative h-48 w-full rounded-2xl overflow-hidden bg-hueso border border-azul/5">
+              <img 
+                src={workshopImages[idx]} 
+                alt={workshop.title} 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                loading="lazy"
+              />
+              <!-- Emoji overlay -->
+              <span class="absolute bottom-3 right-3 dir-rtl:left-3 dir-rtl:right-auto w-10 h-10 rounded-xl bg-white/95 backdrop-blur-sm flex items-center justify-center text-xl shadow-md border border-azul/5">
+                {icons[idx] || "📚"}
+              </span>
+            </div>
             <div class="space-y-2">
               <h3 class="font-display text-xl font-extrabold text-azul group-hover:text-verde transition-colors">{workshop.title}</h3>
               <p class="text-sm text-azul/70 font-medium leading-relaxed">{workshop.desc}</p>
