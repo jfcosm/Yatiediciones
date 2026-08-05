@@ -1,5 +1,6 @@
 ---
 import { translations } from '../i18n/translations';
+import { booksTranslations } from '../i18n/books';
 import BookCard from './BookCard.astro';
 
 interface Props {
@@ -9,31 +10,72 @@ interface Props {
 const { lang } = Astro.props;
 const activeLang = lang || 'es';
 const t = translations[activeLang as keyof typeof translations] || translations.es;
+const bt = booksTranslations[activeLang as keyof typeof booksTranslations] || booksTranslations.es;
 
 const books = [
   {
-    title: t.books.zenon.title,
-    subtitle: t.books.zenon.subtitle,
-    description: t.books.zenon.description,
-    imageSrc: "/images/zenon_cover.png",
-    tags: t.books.zenon.tags,
-    ageGroup: t.books.zenon.age
+    title: bt.yati_magic.title,
+    subtitle: bt.yati_magic.subtitle,
+    description: bt.yati_magic.description,
+    imageSrc: "/images/la_magia_de_la_yati.png",
+    tags: bt.yati_magic.tags,
+    ageGroup: bt.yati_magic.age
   },
   {
-    title: t.books.kumi.title,
-    subtitle: t.books.kumi.subtitle,
-    description: t.books.kumi.description,
-    imageSrc: "/images/kumi_cover.png",
-    tags: t.books.kumi.tags,
-    ageGroup: t.books.kumi.age
+    title: bt.zenon_coloring.title,
+    subtitle: bt.zenon_coloring.subtitle,
+    description: bt.zenon_coloring.description,
+    imageSrc: "/images/zenon_coloring_cover.png",
+    tags: bt.zenon_coloring.tags,
+    ageGroup: bt.zenon_coloring.age
   },
   {
-    title: t.books.kurmi.title,
-    subtitle: t.books.kurmi.subtitle,
-    description: t.books.kurmi.description,
-    imageSrc: "/images/kurmi_cover.png",
-    tags: t.books.kurmi.tags,
-    ageGroup: t.books.kurmi.age
+    title: bt.cuaderno_1.title,
+    subtitle: bt.cuaderno_1.subtitle,
+    description: bt.cuaderno_1.description,
+    imageSrc: "/images/cuaderno_aprendizaje_1.png",
+    tags: bt.cuaderno_1.tags,
+    ageGroup: bt.cuaderno_1.age
+  },
+  {
+    title: bt.educador_tradicional.title,
+    subtitle: bt.educador_tradicional.subtitle,
+    description: bt.educador_tradicional.description,
+    imageSrc: "/images/educador_tradicional.png",
+    tags: bt.educador_tradicional.tags,
+    ageGroup: bt.educador_tradicional.age
+  },
+  {
+    title: bt.diario_de_kurmi.title,
+    subtitle: bt.diario_de_kurmi.subtitle,
+    description: bt.diario_de_kurmi.description,
+    imageSrc: "/images/diario_de_kurmi.jpg",
+    tags: bt.diario_de_kurmi.tags,
+    ageGroup: bt.diario_de_kurmi.age
+  },
+  {
+    title: bt.cuaderno_2.title,
+    subtitle: bt.cuaderno_2.subtitle,
+    description: bt.cuaderno_2.description,
+    imageSrc: "/images/cuaderno_aprendizaje_2.jpeg",
+    tags: bt.cuaderno_2.tags,
+    ageGroup: bt.cuaderno_2.age
+  },
+  {
+    title: bt.secretos_awicha.title,
+    subtitle: bt.secretos_awicha.subtitle,
+    description: bt.secretos_awicha.description,
+    imageSrc: "/images/secretos_de_awicha.jpg",
+    tags: bt.secretos_awicha.tags,
+    ageGroup: bt.secretos_awicha.age
+  },
+  {
+    title: bt.cuentos_zenon.title,
+    subtitle: bt.cuentos_zenon.subtitle,
+    description: bt.cuentos_zenon.description,
+    imageSrc: "/images/cuentos_andinos_zenon.png",
+    tags: bt.cuentos_zenon.tags,
+    ageGroup: bt.cuentos_zenon.age
   }
 ];
 ---
@@ -56,8 +98,8 @@ const books = [
       </p>
     </div>
 
-    <!-- Books Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+    <!-- Books Grid (expanded to 4 cols on extra large screens) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10">
       {books.map((book) => (
         <BookCard {...book} ctaText={t.catalog.bookCta} />
       ))}
